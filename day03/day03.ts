@@ -18,24 +18,19 @@ const day03a = (input: string) =>
     })
     .reduce((sum, curr) => (sum += curr), 0);
 
-const day03b = (input: string) => {
-  let badges: string[] = [];
+const day03b = (input) => {
   const rucksacks = input.split('\n');
+  const badges = [];
+
   for (let i = 0; i < rucksacks.length; i += 3) {
     const group = rucksacks.slice(i, i + 3);
-    const firstBackpack = new Set(group[0]);
-    const secondBackpack = new Set(group[1]);
-    const thirdBackpack = new Set(group[2]);
-    const common = [...firstBackpack].find(
-      (x) => secondBackpack.has(x) && thirdBackpack.has(x),
-    );
-    if (common) {
-      badges.push(common);
-    }
+    const common = group[0]
+      .split('')
+      .find((x) => group[1].includes(x) && group[2].includes(x));
+    if (common) badges.push(common);
   }
-  return badges
-    .map((e) => getPriority(e))
-    .reduce((acc, curr) => (acc += curr), 0);
+
+  return badges.reduce((acc, curr) => acc + getPriority(curr), 0);
 };
 
 const input = `vJrwpWtwJgWrhcsFMMfFFhFp
