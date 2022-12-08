@@ -1,4 +1,4 @@
-function day07(input: string) {
+const day07 = (input: string) => {
   const lines = input.split('\n');
   const dirs: { [key: string]: number } = {};
   const currentPath: string[] = [];
@@ -30,7 +30,7 @@ function day07(input: string) {
     .find((dirSize) => 70000000 - dirs['/'] + dirSize >= 30000000);
 
   return { part1, part2 };
-}
+};
 
 const input = `$ cd /
 $ ls
